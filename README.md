@@ -25,3 +25,10 @@ Gestalte das Spiel mithilfe von CSS schöner.
 * Tausche die Zeichen 'X' und 'O' durch schönere Symbole aus
   * Eine Liste von möglichen Symbolen findest du auf dieser Seite https://www.htmlsymbols.xyz/
   * Wenn du dem Link zu einem Symbol folgst, findest du unter JavaScript den JavaScript-Code zum kopieren. (Nutze das Kopier-Icon)
+* Die Schriftart lässt sich mit dem CSS-Property "font-family" ändern 
+* Nimm weitere Verschönerungen vor, bis du mit dem Endergebnis zufrieden bist.
+
+## Hinweise zur CSS-Formatierung
+* Um Elemente zu Zentrieren bzw. zu Stapeln kann am besten Flexbox verwendet werden
+  * Dazu muss ein HTML-Element mit dem CSS-Property "display: flex;" versehen werden
+  * Danach lassen sich die Befehle aus dieser Anleitung nutzen: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
