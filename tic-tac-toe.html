@@ -1,6 +1,16 @@
 <html>
 <head>
 	<style>
+		body {
+			font-family: Helvetica,Arial,sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		h1 {
+			margin-top: 40px;
+		}
+		
 		.game-plan {
 			display: flex;
 		}
@@ -8,7 +18,13 @@
 		.cell {
 			border: solid 1px black;
 			min-width: 100px;
-			min-height: 25px;
+			min-height: 100px;
+
+			font-size: 40px;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		.cell.marked {
 			border: dotted 1px black;
@@ -16,9 +32,21 @@
 		
 		.player-info, .winner-info, .tie-info {
 			display: none;
+			font-size: 20px;
+		}
+		.winner-info {
+			color: green;
+			font-weight: 600; 
+		}
+		.tie-info {
+			color: blue;
+			font-weight: 600;
 		}
 		.show-me {
 			display: block !important;
+		}
+		.match {
+			background: lightgreen;
 		}
 	</style>
 </head>
@@ -57,8 +85,16 @@
 	
 	<script>	
 		function matches(cell1, cell2, cell3) {
-			return cell1.textContent && cell1.textContent.trim().length > 0 && 
+			const match = cell1.textContent && cell1.textContent.trim().length > 0 && 
 				(cell1.textContent.trim() === cell2.textContent.trim()) && (cell1.textContent.trim() === cell3.textContent.trim());
+
+			if (match) {
+				cell1.classList.add('match');
+				cell2.classList.add('match');
+				cell3.classList.add('match');
+			}
+
+			return match;
 		}
 	
 		function checkWin() {
@@ -141,7 +177,7 @@
 			playerNameHtml.textContent = player;
 		}
 	
-		let player = 'X';
+		let player = "\u2764";
 		setPlayer(player);
 		
 		const cells = document.querySelectorAll(".cell");
@@ -152,7 +188,7 @@
 					cell.classList.add('marked');
 					
 					if (!checkEnd(player)) {
-						player = player === 'X' ? 'O' : 'X';
+						player = player === "\u2764" ? "\u265E" : "\u2764";
 						setPlayer(player);
 					}
 				}
