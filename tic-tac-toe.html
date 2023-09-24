@@ -1,0 +1,163 @@
+<html>
+<head>
+	<style>
+		.game-plan {
+			display: flex;
+		}
+	
+		.cell {
+			border: solid 1px black;
+			min-width: 100px;
+			min-height: 25px;
+		}
+		.cell.marked {
+			border: dotted 1px black;
+		}
+		
+		.player-info, .winner-info, .tie-info {
+			display: none;
+		}
+		.show-me {
+			display: block !important;
+		}
+	</style>
+</head>
+<body>
+	<h1>Tic-Tac-Toe von {NAME}</h1>
+	<p class="player-info show-me">Spieler <span class="player-name"></span> ist an der Reihe.</p>
+	<p class="winner-info">Spieler <span class="winner-name"></span> hat gewonnen.</p>
+	<p class="tie-info">Unentschieden.</p>
+
+	<div class="game-plan">
+		<div id="row-1" class="row">
+			<div id="cell-11" class="cell">
+			</div>
+			<div id="cell-12" class="cell">
+			</div>
+			<div id="cell-13" class="cell">
+			</div>
+		</div>
+		<div id="row-2" class="row">
+			<div id="cell-21" class="cell">
+			</div>
+			<div id="cell-22" class="cell">
+			</div>
+			<div id="cell-23" class="cell">
+			</div>
+		</div>
+		<div id="row-3" class="row">
+			<div id="cell-31" class="cell">
+			</div>
+			<div id="cell-32" class="cell">
+			</div>
+			<div id="cell-33" class="cell">
+			</div>
+		</div>
+	</div>
+	
+	<script>	
+		function matches(cell1, cell2, cell3) {
+			return cell1.textContent && cell1.textContent.trim().length > 0 && 
+				(cell1.textContent.trim() === cell2.textContent.trim()) && (cell1.textContent.trim() === cell3.textContent.trim());
+		}
+	
+		function checkWin() {
+			let match = [1,2,3].some(i => {
+				let match = matches(
+					document.querySelector("#cell-1" + i),
+					document.querySelector("#cell-2" + i),
+					document.querySelector("#cell-3" + i)
+				);
+				
+				match ||= matches(
+					document.querySelector("#cell-" + i + "1"),
+					document.querySelector("#cell-" + i + "2"),
+					document.querySelector("#cell-" + i + "3")
+				);
+				
+				return match;
+			});
+				
+			match ||= matches(
+				document.querySelector("#cell-11"),
+				document.querySelector("#cell-22"),
+				document.querySelector("#cell-33")
+			);
+				
+			match ||= matches(
+				document.querySelector("#cell-13"),
+				document.querySelector("#cell-22"),
+				document.querySelector("#cell-31")
+			);
+			
+			return match;
+		}
+		
+		function setWinner(player) {
+			const winnerNameHtml = document.querySelector(".winner-name");
+			winnerNameHtml.textContent = player;
+			
+			const winnerInfoHtml = document.querySelector(".winner-info");
+			winnerInfoHtml.classList.add('show-me');
+			
+			const playerInfoHtml = document.querySelector(".player-info");
+			playerInfoHtml.classList.remove('show-me');
+			
+			document.querySelectorAll(".cell").forEach(cell => {
+				cell.classList.add('marked');
+			});
+		}
+		
+		function checkTie() {
+			return Array.from(document.querySelectorAll(".cell"))
+				.every(cell => cell.classList.contains('marked'));
+		}
+		
+		function setTie() {			
+			const tieInfoHtml = document.querySelector(".tie-info");
+			tieInfoHtml.classList.add('show-me');
+			
+			const playerInfoHtml = document.querySelector(".player-info");
+			playerInfoHtml.classList.remove('show-me');
+			
+			document.querySelectorAll(".cell").forEach(cell => {
+				cell.classList.add('marked');
+			});
+		}
+		
+		function checkEnd(player) {
+			if (checkWin()) {
+				setWinner(player);
+				return true;
+			} else if (checkTie()) {
+				setTie();
+				return true;
+			}
+			return false;
+		}		
+		
+		function setPlayer(player) {
+			const playerNameHtml = document.querySelector(".player-name");
+			playerNameHtml.textContent = player;
+		}
+	
+		let player = 'X';
+		setPlayer(player);
+		
+		const cells = document.querySelectorAll(".cell");
+		cells.forEach(cell => {
+			cell.addEventListener('click', (event) => {
+				if (!cell.classList.contains('marked')) {
+					cell.textContent = player;
+					cell.classList.add('marked');
+					
+					if (!checkEnd(player)) {
+						player = player === 'X' ? 'O' : 'X';
+						setPlayer(player);
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>
