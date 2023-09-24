@@ -12,3 +12,6 @@ Das Spiel lässt sich bearbeiten mit
 * Wird "Editor" nicht vorgeschlagen, zuerst auf "Andere App auswählen" klicken, dort müsste sich der "Editor" finden lassen
 
 Die Entwicklertools im Browser lassen sich mit F12 öffnen.
+Den Aufbau der Seite als HTML-Code siehst du im Reiter
+* Chrome/Edge: Elements [EN] / Elemente [DE]
+* Fire Fox: Inspector [EN] / Inspektor [DE]
