@@ -10,3 +10,5 @@ Das Spiel lässt sich bearbeiten mit
 * "Öffnen mit" auswählen
 * Das Programm "Editor" auswählen
 * Wird "Editor" nicht vorgeschlagen, zuerst auf "Andere App auswählen" klicken, dort müsste sich der "Editor" finden lassen
+
+Die Entwicklertools im Browser lassen sich mit F12 öffnen.
