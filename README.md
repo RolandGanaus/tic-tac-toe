@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-Bitte die Datei tic-tac-toe.html öffnen und bei den Icons oben rechts auf "Download raw file" klicken.
+Bitte dem Link "tic-tac-toe.html" folgen und bei den Icons oben rechts auf "Download raw file" klicken.
 
 Das Spiel öffnet sich mit einem Doppelklick im Browser.
 Möchtet ihr das Spiel von vorne beginnen, die Seite neu laden z.B. mit der Taste F5.
